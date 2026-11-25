@@ -15,7 +15,8 @@ let remembered;try{remembered=Number(localStorage.getItem('interview-last-v1'));
 let selected=byId.get(Number(location.hash.slice(1)))||byId.get(remembered)||data.find(q=>q.category==='Behavioral')||data[0];
 let category=selected.category,showAnswer=true,rows=[];
 function persist(key,value){try{localStorage.setItem(key,JSON.stringify(value));}catch{el('reviewCount').textContent='Browser storage unavailable';}}
-let readerFontSize=Math.min(24,Math.max(13,Number(localStorage.getItem('interview-font-size-v1'))||16));
+let readerFontSize=16;
+try{readerFontSize=Math.min(24,Math.max(13,Number(localStorage.getItem('interview-font-size-v1'))||16));}catch{}
 function renderDisplaySettings(){
  const dark=document.documentElement.dataset.theme==='dark';
  el('themeToggle').setAttribute('aria-pressed',String(dark));el('themeIcon').textContent=dark?'☀':'☾';el('themeLabel').textContent=dark?'Light':'Dark';
@@ -104,7 +105,7 @@ function renderPanels(){
 }
 for(const [key,id] of [['categories','toggleCategories'],['questions','toggleQuestions']])el(id).onclick=()=>{panelState[key]=!panelState[key];renderPanels();persist('interview-panels-v1',panelState);};
 renderPanels();
-window.addEventListener('load',typesetReader);
+window.addEventListener('interview-math-ready',typesetReader);
 
 refreshList();nav();
 
@@ -142,3 +143,4 @@ divider.addEventListener('keydown',event=>{
  else if(event.key==='Home'||event.key==='End'){event.preventDefault();applySplit(event.key==='Home'?15:75,true);}
 });
 applySplit(questionShare);
+window.interviewLibraryReady=true;
