@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Transfer progress · Interview Studio</title>
+  <style>
+    :root { color-scheme: light dark; font: 16px/1.6 system-ui, sans-serif; }
+    body { margin: 2rem auto; max-width: 43rem; padding: 0 1rem; }
+    label { display: block; font-weight: 600; }
+    textarea { box-sizing: border-box; display: block; width: 100%; margin: .5rem 0 1rem; font: inherit; }
+    button { font: inherit; padding: .4rem .75rem; cursor: pointer; }
+    .actions { display: flex; flex-wrap: wrap; gap: .5rem; }
+  </style>
+  <script src="progress.js" defer></script>
+</head>
+<body>
+  <main>
+    <a href="./">Back to Interview Studio</a>
+    <h1>Transfer your progress</h1>
+    <p>On your old site, export a copy of your completed questions and bookmarks. On your new site, paste it below and select Import. Existing progress on the destination is kept.</p>
+    <p id="current"></p>
+    <label for="backup">Progress backup</label>
+    <textarea id="backup" rows="8" spellcheck="false" autocomplete="off"></textarea>
+    <div class="actions">
+      <button id="export" type="button">Export</button>
+      <button id="copy" type="button">Copy backup</button>
+      <button id="import" type="button">Import</button>
+    </div>
+    <p id="status" role="status"></p>
+  </main>
+</body>
+</html>
